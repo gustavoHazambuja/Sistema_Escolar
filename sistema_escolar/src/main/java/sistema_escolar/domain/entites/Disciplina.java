@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -25,7 +27,9 @@ public class Disciplina {
     
     @Id
     private int codigo;
-    private String nome;
+
+    @Enumerated(EnumType.STRING)
+    private TipoDisciplina tipoDisciplina;
     
     @ManyToOne
     @JoinColumn(name = "id_professor")

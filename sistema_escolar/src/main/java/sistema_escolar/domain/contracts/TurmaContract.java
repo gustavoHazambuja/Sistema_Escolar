@@ -10,10 +10,10 @@ import sistema_escolar.domain.entites.Turma;
 
 public interface TurmaContract {
     
-    boolean turmaValida(int codigo);
+    boolean turmaValida(int numero);
     boolean cadastrarTurma(Turma turma);
-    boolean deletarTurma(int codigo);
+    boolean deletarTurmaPorNumero(int numero);
     Page<Turma> listarTurmas(Pageable pageable);
-    Optional<Turma> buscarTurmaPorCodigo(int codigo);
+    Optional<Turma> buscarTurmaPorNumero(int numero);
     boolean registrarAlunoNaTurma(Aluno aluno, Turma turma);
 }

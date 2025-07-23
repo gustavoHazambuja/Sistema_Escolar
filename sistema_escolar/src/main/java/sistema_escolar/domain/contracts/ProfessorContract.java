@@ -15,11 +15,11 @@ public interface ProfessorContract {
 
     boolean professorValido(int id);
     boolean cadastrarProfessor(Professor professor);
-    boolean deletarProfessor(int id);
+    boolean deletarProfessorPorId(int id);
     Page<Professor> listarProfessores(Pageable pageable);
     Optional<Professor> buscarProfessorPorNome(String nome);
     Optional<Professor> buscarProfessorPorId(int id);
-    double lancarNota(Aluno aluno, Avaliacao avaliacao, double nota);
+    double lancarNota(Aluno aluno, Avaliacao avaliacao);
     boolean criarAvaliacao(Avaliacao avaliacao,LocalDate data);
     double consultarFrequencia(Aluno aluno, Turma turma);
     

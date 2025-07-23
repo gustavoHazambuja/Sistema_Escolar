@@ -12,7 +12,7 @@ public interface AlunoContract {
     
     boolean alunoValido(int id);
     boolean cadastrarAluno(Aluno aluno);
-    boolean deletarAluno(int id);
+    boolean deletarAlunoPorId(int id);
     Page<Aluno> listarAlunos(Pageable pageable);
     Optional<Aluno> buscarAlunoPorNome(String nome);
     Optional<Aluno> buscarAlunoPorId(int id);

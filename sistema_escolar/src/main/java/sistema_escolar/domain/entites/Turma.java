@@ -36,7 +36,4 @@ public class Turma {
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<Disciplina> disciplinas = new ArrayList<>();
-
-    @OneToMany(mappedBy = "turma", fetch = FetchType.LAZY)
-    private List<Frequencia> frequencias = new ArrayList<>();
 }

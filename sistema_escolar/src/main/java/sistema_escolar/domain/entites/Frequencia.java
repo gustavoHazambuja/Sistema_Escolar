@@ -28,10 +28,10 @@ public class Frequencia {
     private Aluno aluno;
 
     @ManyToOne
-    @JoinColumn(name = "numero_turma")
-    private Turma turma;
+    @JoinColumn(name = "codigo_disciplina")
+    private Disciplina disciplina;
 
-    private LocalDate data;
+    private LocalDate data = LocalDate.now();
 
     private boolean presente;
 }

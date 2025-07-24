@@ -54,7 +54,7 @@ public class TurmaService {
             return false;
         }
 
-        if(!turmaContract.turmaValida(turma.getNumero()) && !alunoContract.alunoValido(aluno.getId())){
+        if(!turmaContract.turmaValida(turma.getNumero()) || !alunoContract.alunoValido(aluno.getId())){
             return false;
         }
 

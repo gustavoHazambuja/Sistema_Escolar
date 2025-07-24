@@ -1,6 +1,5 @@
 package sistema_escolar.domain.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,10 +9,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import sistema_escolar.domain.contracts.AlunoContract;
+import sistema_escolar.domain.contracts.DisciplinaContract;
 import sistema_escolar.domain.contracts.ProfessorContract;
 import sistema_escolar.domain.entites.Aluno;
 import sistema_escolar.domain.entites.Avaliacao;
+import sistema_escolar.domain.entites.Disciplina;
 import sistema_escolar.domain.entites.EstadoAvaliacao;
+import sistema_escolar.domain.entites.Frequencia;
 import sistema_escolar.domain.entites.NotaAvaliacao;
 import sistema_escolar.domain.entites.Professor;
 
@@ -25,6 +27,9 @@ public class ProfessorService {
 
     @Autowired
     private AlunoContract alunoContract;
+
+    @Autowired
+    private DisciplinaContract disciplinaContract;
 
     public boolean professorValido(int id){
         return professorContract.professorValido(id);
@@ -70,7 +75,7 @@ public class ProfessorService {
     }
 
     private double calcularMedia(Aluno aluno){
-        List<NotaAvaliacao> notas = new ArrayList<>();
+        List<NotaAvaliacao> notas = professorContract.obterNotasDoAluno(aluno);
 
         if(notas.isEmpty()) return 0.0;
 
@@ -90,6 +95,28 @@ public class ProfessorService {
 
         return media;
      
+    }
+
+    public boolean criarAvaliacao(Avaliacao avaliacao){
+        return professorContract.criarAvaliacao(avaliacao);
+    }
+
+    public double consultarFrequencia(Aluno aluno,Disciplina disciplina){
+        if(!alunoContract.alunoValido(aluno.getId()) || !disciplinaContract.disciplinaValida(disciplina.getCodigo())){
+            return 0.0;
+        }
+
+        List<Frequencia> presencas = professorContract.obterFrequenciasDoAluno(aluno, disciplina);
+
+        int totalAulas = disciplina.getTotalAulas();
+        if(totalAulas == 0) return 0.0;
+
+        long diasPresentes = presencas.stream()
+            .filter(Frequencia::isPresente)
+            .count();
+
+        return (diasPresentes / (double) totalAulas) * 100;
+
     }
 }
 

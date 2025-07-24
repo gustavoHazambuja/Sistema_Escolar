@@ -1,6 +1,8 @@
 package sistema_escolar.domain.entites;
 
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -23,6 +25,8 @@ public class Avaliacao {
     
     @Id
     private int id;
+
+    private LocalDate dataAvaliacao;
 
     @ManyToOne
     @JoinColumn(name = "codigo_disciplina")

@@ -30,6 +30,8 @@ public class Disciplina {
 
     @Enumerated(EnumType.STRING)
     private TipoDisciplina tipoDisciplina;
+
+    private int totalAulas;
     
     @ManyToOne
     @JoinColumn(name = "id_professor")
@@ -37,4 +39,7 @@ public class Disciplina {
 
     @OneToMany(mappedBy = "disciplina", fetch = FetchType.LAZY)
     private List<Avaliacao> avaliacoes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "disciplina", fetch = FetchType.LAZY)
+    private List<Frequencia> frequencias = new ArrayList<>();
 }

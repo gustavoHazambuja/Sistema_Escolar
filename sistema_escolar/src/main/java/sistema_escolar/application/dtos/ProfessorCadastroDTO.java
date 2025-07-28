@@ -1,7 +1,5 @@
 package sistema_escolar.application.dtos;
 
-import java.time.LocalDate;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AvaliacaoDTO{
-
+public class ProfessorCadastroDTO {
+    
     private int id;
-    private LocalDate dataAvaliacao;
+    private String nome;
+    private String email;
+    private String formacao;
 }

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import sistema_escolar.domain.entites.Frequencia;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,4 +16,12 @@ public class FrequenciaDTO {
     
     private int id;
     private LocalDate data = LocalDate.now();
+
+    
+    public static FrequenciaDTO frmoModel(Frequencia frequencia){
+        return new FrequenciaDTO(
+            frequencia.getId(),
+            frequencia.getData()
+        );
+    }
 }

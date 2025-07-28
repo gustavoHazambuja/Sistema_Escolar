@@ -28,6 +28,12 @@ public class Turma {
     private int capacidade;
     private int tamanho;
 
+    public Turma(int numero, int capacidade, int tamanho){
+        this.numero = numero;
+        this.capacidade = capacidade;
+        this.tamanho = tamanho;
+    }
+
     @ManyToMany(mappedBy = "turmas")
     private List<Professor> professores = new ArrayList<>();
 

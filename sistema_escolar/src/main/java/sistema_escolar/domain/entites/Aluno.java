@@ -37,6 +37,12 @@ public class Aluno {
     @Enumerated(EnumType.STRING)
     private EstadoAvaliacao estadoAvaliacao;
 
+    public Aluno(int id, String nome, String email){
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+    }
+
     @ManyToOne
     @JoinColumn(name = "numero_turma")
     private Turma turma;

@@ -4,15 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import sistema_escolar.domain.entites.TipoDisciplina;
+
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProfessorDTO{
-
-    private int id;
-    private String nome;
-    private String email;
-    private String formacao;
+public class DisciplinaCadastroDTO {
+    
+    private int codigo;
+    private TipoDisciplina tipoDisciplina;
+    private int totalAulas;
 }

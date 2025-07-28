@@ -33,6 +33,13 @@ public class Professor {
 
     private String formacao;
 
+    public Professor(int id, String nome, String email, String formacao){
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.formacao = formacao;
+    }
+
     @OneToMany(mappedBy = "professor", fetch = FetchType.LAZY)
     private List<Disciplina> disciplinas = new ArrayList<>();
 

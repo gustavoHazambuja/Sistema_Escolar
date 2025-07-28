@@ -28,6 +28,11 @@ public class Avaliacao {
 
     private LocalDate dataAvaliacao;
 
+    public Avaliacao(int id, LocalDate dataAvaliacao){
+        this.id = id;
+        this.dataAvaliacao = dataAvaliacao;
+    }
+
     @ManyToOne
     @JoinColumn(name = "codigo_disciplina")
     private Disciplina disciplina;

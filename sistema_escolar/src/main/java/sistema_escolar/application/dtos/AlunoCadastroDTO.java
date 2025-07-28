@@ -4,16 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sistema_escolar.domain.entites.EstadoAvaliacao;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AlunoDTO{
-
+public class AlunoCadastroDTO {
+    
     private int id;
     private String nome;
     private String email;
-    private EstadoAvaliacao estadoAvaliacao;
 }

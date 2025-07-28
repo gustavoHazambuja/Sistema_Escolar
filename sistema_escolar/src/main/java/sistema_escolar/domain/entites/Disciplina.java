@@ -32,6 +32,12 @@ public class Disciplina {
     private TipoDisciplina tipoDisciplina;
 
     private int totalAulas;
+
+    public Disciplina(int codigo, TipoDisciplina tipoDisciplina, int totalAulas){
+        this.codigo = codigo;
+        this.tipoDisciplina = tipoDisciplina;
+        this.totalAulas = totalAulas;
+    }
     
     @ManyToOne
     @JoinColumn(name = "id_professor")

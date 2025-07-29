@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import sistema_escolar.application.dtos.DisciplinaCadastroDTO;
+import sistema_escolar.application.dtos.DisciplinaDetalhadaDTO;
 import sistema_escolar.application.dtos.DisciplinaResumoDTO;
 import sistema_escolar.domain.entites.Disciplina;
 import sistema_escolar.domain.services.DisciplinaService;
@@ -32,14 +33,14 @@ public class DisciplinaUC {
             .map(DisciplinaResumoDTO::fromModel);
     }
 
-    public DisciplinaResumoDTO buscarDisciplinaPorNome(String nome){
+    public DisciplinaDetalhadaDTO buscarDisciplinaPorNome(String nome){
         Disciplina disciplina = disciplinaService.buscarDisciplinaPorNome(nome).get();
-        return DisciplinaResumoDTO.fromModel(disciplina);
+        return DisciplinaDetalhadaDTO.fromModel(disciplina);
     }
 
-    public DisciplinaResumoDTO buscarDisciplinaPorCodigo(int codigo){
+    public DisciplinaDetalhadaDTO buscarDisciplinaPorCodigo(int codigo){
         Disciplina disciplina = disciplinaService.buscarDisciplinaPorCodigo(codigo).get();
-        return DisciplinaResumoDTO.fromModel(disciplina);
+        return DisciplinaDetalhadaDTO.fromModel(disciplina);
     }
 
 

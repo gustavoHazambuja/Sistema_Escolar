@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import sistema_escolar.application.dtos.AlunoCadastroDTO;
+import sistema_escolar.application.dtos.AlunoDetalhadoDTO;
 import sistema_escolar.application.dtos.AlunoResumoDTO;
 import sistema_escolar.domain.entites.Aluno;
 import sistema_escolar.domain.services.AlunoService;
@@ -35,14 +36,14 @@ public class AlunoUC {
             .map(AlunoResumoDTO::fromModel);
     }
 
-    public AlunoResumoDTO buscarAlunoPorNome(String nome){
+    public AlunoDetalhadoDTO buscarAlunoPorNome(String nome){
         Aluno aluno = alunoService.buscarAlunoPorNome(nome).get();
-        return AlunoResumoDTO.fromModel(aluno);
+        return AlunoDetalhadoDTO.fromModel(aluno);
     }
 
-    public AlunoResumoDTO buscarAlunoPorId(int id){
+    public AlunoDetalhadoDTO buscarAlunoPorId(int id){
         Aluno aluno = alunoService.buscarAlunoPorId(id).get();
-        return AlunoResumoDTO.fromModel(aluno);
+        return AlunoDetalhadoDTO.fromModel(aluno);
     }
 
 

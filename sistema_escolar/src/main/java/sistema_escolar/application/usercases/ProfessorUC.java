@@ -8,6 +8,7 @@ import sistema_escolar.application.dtos.AlunoCadastroDTO;
 import sistema_escolar.application.dtos.AvaliacaoCadastroDTO;
 import sistema_escolar.application.dtos.DisciplinaCadastroDTO;
 import sistema_escolar.application.dtos.ProfessorCadastroDTO;
+import sistema_escolar.application.dtos.ProfessorDetalhadoDTO;
 import sistema_escolar.application.dtos.ProfessorResumoDTO;
 import sistema_escolar.domain.entites.Aluno;
 import sistema_escolar.domain.entites.Avaliacao;
@@ -38,14 +39,14 @@ public class ProfessorUC {
             .map(ProfessorResumoDTO::fromModel);
     }
 
-    public ProfessorResumoDTO buscarProfessorPorNome(String nome){
+    public ProfessorDetalhadoDTO buscarProfessorPorNome(String nome){
         Professor professor = professorService.buscarProfessorPorNome(nome).get();
-        return ProfessorResumoDTO.fromModel(professor);
+        return ProfessorDetalhadoDTO.fromModel(professor);
     }
 
-     public ProfessorResumoDTO buscarProfessorPorId(int id){
+     public ProfessorDetalhadoDTO buscarProfessorPorId(int id){
         Professor professor = professorService.buscarProfessorPorId(id).get();
-        return ProfessorResumoDTO.fromModel(professor);
+        return ProfessorDetalhadoDTO.fromModel(professor);
     }
 
     public double lancarNota(AlunoCadastroDTO alunoCadastroDTO, AvaliacaoCadastroDTO avaliacaoCadastroDTO){

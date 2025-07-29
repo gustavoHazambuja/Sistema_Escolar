@@ -12,16 +12,18 @@ import sistema_escolar.domain.entites.Frequencia;
 @NoArgsConstructor
 @Getter
 @Setter
-public class FrequenciaDTO {
+public class FrequenciaResumidaDTO {
     
     private int id;
     private LocalDate data = LocalDate.now();
+    private boolean presente;
 
     
-    public static FrequenciaDTO frmoModel(Frequencia frequencia){
-        return new FrequenciaDTO(
+    public static FrequenciaResumidaDTO frmoModel(Frequencia frequencia){
+        return new FrequenciaResumidaDTO(
             frequencia.getId(),
-            frequencia.getData()
+            frequencia.getData(),
+            frequencia.isPresente()
         );
     }
 }

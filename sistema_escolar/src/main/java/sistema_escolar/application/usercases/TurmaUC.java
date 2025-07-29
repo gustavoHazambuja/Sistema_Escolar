@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 
 import sistema_escolar.application.dtos.AlunoCadastroDTO;
 import sistema_escolar.application.dtos.TurmaCadastroDTO;
+import sistema_escolar.application.dtos.TurmaDetalhadaDTO;
 import sistema_escolar.application.dtos.TurmaResumidaDTO;
 import sistema_escolar.domain.entites.Aluno;
 import sistema_escolar.domain.entites.Turma;
@@ -34,9 +35,9 @@ public class TurmaUC {
             .map(TurmaResumidaDTO::fromModel);
     }
 
-    public TurmaResumidaDTO buscarTurmaPorNumero(int numero){
+    public TurmaDetalhadaDTO buscarTurmaPorNumero(int numero){
         Turma turma = turmaService.buscarTurmaPorNumero(numero).get();
-        return TurmaResumidaDTO.fromModel(turma);
+        return TurmaDetalhadaDTO.fromModel(turma);
     }
 
     public boolean registarAlunoNaTurma(AlunoCadastroDTO alunoCadastroDTO, TurmaCadastroDTO turmaCadastroDTO){

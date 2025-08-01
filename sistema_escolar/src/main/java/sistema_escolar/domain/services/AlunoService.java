@@ -42,8 +42,8 @@ public class AlunoService {
         return alunoContract.listarAlunos(pageable);
     }
 
-    public Optional<Aluno> buscarAlunoPorNome(String nome){
-        return alunoContract.buscarAlunoPorNome(nome);
+    public Page<Aluno> buscarAlunoPorNome(String nome, Pageable pageable){
+        return alunoContract.buscarAlunoPorNome(nome, pageable);
     }
 
     public Optional<Aluno> buscarAlunoPorId(int id){

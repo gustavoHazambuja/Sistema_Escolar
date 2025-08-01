@@ -14,7 +14,7 @@ public interface AlunoContract {
     boolean cadastrarAluno(Aluno aluno);
     boolean deletarAlunoPorId(int id);
     Page<Aluno> listarAlunos(Pageable pageable);
-    Optional<Aluno> buscarAlunoPorNome(String nome);
+    Page<Aluno> buscarAlunoPorNome(String nome, Pageable pageable);
     Optional<Aluno> buscarAlunoPorId(int id);
     
 

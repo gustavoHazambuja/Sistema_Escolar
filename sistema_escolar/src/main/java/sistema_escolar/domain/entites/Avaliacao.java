@@ -3,6 +3,8 @@ package sistema_escolar.domain.entites;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -26,6 +28,7 @@ public class Avaliacao {
     @Id
     private int id;
 
+    @JsonFormat(pattern = "dd/MM/yyy")
     private LocalDate dataAvaliacao;
 
     public Avaliacao(int id, LocalDate dataAvaliacao){

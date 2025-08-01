@@ -56,8 +56,8 @@ public class ProfessorService {
         return professorContract.listarProfessores(pageable);
     }
 
-    public Optional<Professor> buscarProfessorPorNome(String nome){
-        return professorContract.buscarProfessorPorNome(nome);
+    public Page<Professor> buscarProfessorPorNome(String nome, Pageable pageable){
+        return professorContract.buscarProfessorPorNome(nome, pageable);
     }
 
     public Optional<Professor> buscarProfessorPorId(int id){

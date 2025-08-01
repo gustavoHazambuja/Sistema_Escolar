@@ -33,9 +33,9 @@ public class DisciplinaUC {
             .map(DisciplinaResumoDTO::fromModel);
     }
 
-    public DisciplinaDetalhadaDTO buscarDisciplinaPorNome(String nome){
-        Disciplina disciplina = disciplinaService.buscarDisciplinaPorNome(nome).get();
-        return DisciplinaDetalhadaDTO.fromModel(disciplina);
+    public Page<DisciplinaDetalhadaDTO> buscarDisciplinaPorNome(String nome, Pageable pageable){
+        return disciplinaService.buscarDisciplinaPorNome(nome, pageable)
+            .map(DisciplinaDetalhadaDTO::fromModel);
     }
 
     public DisciplinaDetalhadaDTO buscarDisciplinaPorCodigo(int codigo){

@@ -19,7 +19,7 @@ public interface ProfessorContract {
     boolean cadastrarProfessor(Professor professor);
     boolean deletarProfessorPorId(int id);
     Page<Professor> listarProfessores(Pageable pageable);
-    Optional<Professor> buscarProfessorPorNome(String nome);
+    Page<Professor> buscarProfessorPorNome(String nome, Pageable pageable);
     Optional<Professor> buscarProfessorPorId(int id);
     double lancarNota(Aluno aluno, Avaliacao avaliacao);
     boolean criarAvaliacao(Avaliacao avaliacao);

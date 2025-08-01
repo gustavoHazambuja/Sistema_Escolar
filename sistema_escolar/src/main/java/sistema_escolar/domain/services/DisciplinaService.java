@@ -40,8 +40,8 @@ public class DisciplinaService {
         return disciplinaContract.listarDisciplinas(pageable);
     }
 
-    public Optional<Disciplina> buscarDisciplinaPorNome(String nome){
-        return disciplinaContract.buscarDisciplinaPorNome(nome);
+    public Page<Disciplina> buscarDisciplinaPorNome(String nome, Pageable pageable){
+        return disciplinaContract.buscarDisciplinaPorNome(nome, pageable);
     }
 
     public Optional<Disciplina> buscarDisciplinaPorCodigo(int codigo){

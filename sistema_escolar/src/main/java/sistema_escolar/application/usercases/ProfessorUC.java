@@ -39,9 +39,9 @@ public class ProfessorUC {
             .map(ProfessorResumoDTO::fromModel);
     }
 
-    public ProfessorDetalhadoDTO buscarProfessorPorNome(String nome){
-        Professor professor = professorService.buscarProfessorPorNome(nome).get();
-        return ProfessorDetalhadoDTO.fromModel(professor);
+    public Page<ProfessorDetalhadoDTO> buscarProfessorPorNome(String nome, Pageable pageable){
+       return professorService.buscarProfessorPorNome(nome, pageable)
+            .map(ProfessorDetalhadoDTO::fromModel);
     }
 
      public ProfessorDetalhadoDTO buscarProfessorPorId(int id){

@@ -59,10 +59,10 @@ public class AlunoController {
         return new ResponseEntity<>(result, HttpStatus.OK);  
    }
 
-   @GetMapping(value = "/{name}")
-   public ResponseEntity<Page<AlunoDetalhadoDTO>> buscarAlunoPorNome(@PathVariable String name, Pageable pageable){
+   @GetMapping(value = "/{nome}")
+   public ResponseEntity<Page<AlunoDetalhadoDTO>> buscarAlunoPorNome(@PathVariable String nome, Pageable pageable){
 
-        Page<AlunoDetalhadoDTO> result = alunoUC.buscarAlunoPorNome(name, pageable);
+        Page<AlunoDetalhadoDTO> result = alunoUC.buscarAlunoPorNome(nome, pageable);
 
         return new ResponseEntity<>(result,HttpStatus.FOUND);
    }

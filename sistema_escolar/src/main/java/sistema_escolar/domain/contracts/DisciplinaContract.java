@@ -13,6 +13,6 @@ public interface DisciplinaContract {
     boolean cadastrarDisciplina(Disciplina disciplina);
     boolean deletarDisciplinaPorCodigo(int codigo);
     Page<Disciplina> listarDisciplinas(Pageable pageable);
-    Optional<Disciplina> buscarDisciplinaPorNome(String nome);
+    Page<Disciplina> buscarDisciplinaPorNome(String nome, Pageable pageable);
     Optional<Disciplina> buscarDisciplinaPorCodigo(int codigo);
 }

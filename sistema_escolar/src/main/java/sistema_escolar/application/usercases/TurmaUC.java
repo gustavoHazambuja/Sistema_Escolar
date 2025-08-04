@@ -3,6 +3,7 @@ package sistema_escolar.application.usercases;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Component;
 
 import sistema_escolar.application.dtos.AlunoCadastroDTO;
 import sistema_escolar.application.dtos.TurmaCadastroDTO;
@@ -12,6 +13,7 @@ import sistema_escolar.domain.entites.Aluno;
 import sistema_escolar.domain.entites.Turma;
 import sistema_escolar.domain.services.TurmaService;
 
+@Component
 public class TurmaUC {
     
     @Autowired

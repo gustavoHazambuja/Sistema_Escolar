@@ -50,4 +50,12 @@ public class AlunoRepository implements AlunoContract {
     public Optional<Aluno> buscarAlunoPorId(int id){
         return alunoJPARep.findById(id);
     }
+
+    @Override
+    public void atualizarAluno(Aluno aluno){
+        if(alunoValido(aluno.getId())){
+            alunoJPARep.save(aluno);
+        }
+        
+    }
 }

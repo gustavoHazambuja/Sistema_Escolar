@@ -7,5 +7,4 @@ public enum EstadoAvaliacao {
     REPROVADO_POR_NOTA,
     EM_RECUPERACAO,
     RECUPERADO,
-    REPROVADO
 }

@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sistema_escolar.domain.entites.Disciplina;
-import sistema_escolar.domain.entites.TipoDisciplina;
 
 @Getter
 @Setter
@@ -14,13 +13,13 @@ import sistema_escolar.domain.entites.TipoDisciplina;
 public class DisciplinaResumoDTO{
 
     private int codigo;
-    private TipoDisciplina tipoDisciplina;
+    private String nome;
     private int totalAulas;
 
     public static DisciplinaResumoDTO fromModel(Disciplina disciplina){
         return new DisciplinaResumoDTO(
             disciplina.getCodigo(),
-            disciplina.getTipoDisciplina(),
+            disciplina.getNome(),
             disciplina.getTotalAulas()
         );
     }

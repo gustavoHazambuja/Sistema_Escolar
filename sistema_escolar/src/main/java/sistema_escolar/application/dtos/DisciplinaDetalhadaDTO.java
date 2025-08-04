@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sistema_escolar.domain.entites.Disciplina;
-import sistema_escolar.domain.entites.TipoDisciplina;
 
 @Getter
 @Setter
@@ -17,7 +16,7 @@ import sistema_escolar.domain.entites.TipoDisciplina;
 public class DisciplinaDetalhadaDTO {
     
     private int codigo;
-    private TipoDisciplina tipoDisciplina;
+    private String nome;
     private int totalAulas;
     private ProfessorResumoDTO professorResumoDTO;
 
@@ -29,7 +28,7 @@ public class DisciplinaDetalhadaDTO {
     public static DisciplinaDetalhadaDTO fromModel(Disciplina disciplina){
         return new DisciplinaDetalhadaDTO(
             disciplina.getCodigo(),
-            disciplina.getTipoDisciplina(),
+            disciplina.getNome(),
             disciplina.getTotalAulas(),
             ProfessorResumoDTO.fromModel(disciplina.getProfessor()),
 

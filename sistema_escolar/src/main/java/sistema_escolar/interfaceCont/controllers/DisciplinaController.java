@@ -32,7 +32,7 @@ public class DisciplinaController {
         return disciplinaUC.disciplinaValida(codigo);
     }
 
-    @PostMapping(value = "cadastro")
+    @PostMapping(value = "cadastroDisciplina")
     public ResponseEntity<?> cadastrarDisciplina(@RequestBody DisciplinaCadastroDTO dto){
         boolean resposta = disciplinaUC.cadastrarDisciplina(dto);
 
@@ -45,12 +45,12 @@ public class DisciplinaController {
         }
     }
 
-    @DeleteMapping(value = "/deletar/{codigo}")
+    @DeleteMapping(value = "/deletarDisciplina/{codigo}")
     public boolean deletarDisciplinaPorCodigo(@PathVariable int codigo){
         return disciplinaUC.deletarDisciplinaPorCodigo(codigo);
     }
 
-    @GetMapping
+    @GetMapping(value = "/listarDisciplinas")
     public ResponseEntity<Page<DisciplinaResumoDTO>> listarDisciplinas(Pageable pageable){
 
         Page<DisciplinaResumoDTO> result = disciplinaUC.listarDisciplinas(pageable);
@@ -58,7 +58,7 @@ public class DisciplinaController {
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{nome}")
+    @GetMapping(value = "/buscarDisciplinaPorNome/{nome}")
     public ResponseEntity<Page<DisciplinaDetalhadaDTO>> buscarDisciplinaPorNome(@PathVariable String nome, Pageable pageable){
 
         Page<DisciplinaDetalhadaDTO> result = disciplinaUC.buscarDisciplinaPorNome(nome, pageable);
@@ -66,7 +66,7 @@ public class DisciplinaController {
         return new ResponseEntity<>(result,HttpStatus.FOUND);
     }
 
-    @GetMapping(value = "/{codigo}")
+    @GetMapping(value = "/buscarDisciplinaPorCodigo/{codigo}")
     public ResponseEntity<DisciplinaDetalhadaDTO> buscarDisciplinaPorId(@PathVariable int codigo){
 
         DisciplinaDetalhadaDTO result = disciplinaUC.buscarDisciplinaPorCodigo(codigo);

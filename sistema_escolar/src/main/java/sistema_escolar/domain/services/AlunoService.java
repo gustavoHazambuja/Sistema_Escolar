@@ -49,4 +49,12 @@ public class AlunoService {
     public Optional<Aluno> buscarAlunoPorId(int id){
         return alunoContract.buscarAlunoPorId(id);
     }
+
+    public void atualizarAluno(Aluno aluno){
+        if(alunoContract.alunoValido(aluno.getId())){
+            alunoContract.atualizarAluno(aluno);
+            
+    }
+}
+
 }

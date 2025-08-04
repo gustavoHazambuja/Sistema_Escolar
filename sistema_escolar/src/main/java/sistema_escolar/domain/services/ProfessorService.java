@@ -64,14 +64,19 @@ public class ProfessorService {
         return professorContract.buscarProfessorPorId(id);
     }
 
-    public double lancarNota(Aluno aluno, Avaliacao avaliacao){
+
+    public double calcularNota(Aluno aluno, Avaliacao avaliacao){
         if(!alunoContract.alunoValido(aluno.getId())){
             return 0.0;
         }
 
-        calcularMedia(aluno);
+        double media =  calcularMedia(aluno);
+        double frequencia = calcularPorcentagem(aluno, avaliacao.getDisciplina());
+
+        aluno.setEstadoAvaliacao(definirEstadoDoALuno(media, frequencia));
+        alunoContract.atualizarAluno(aluno);
         
-        return professorContract.lancarNota(aluno, avaliacao);
+        return media;
     }
 
     private double calcularMedia(Aluno aluno){
@@ -83,30 +88,28 @@ public class ProfessorService {
             .mapToDouble(NotaAvaliacao::getNota)
             .sum();
 
-        double media =  soma / notas.size();
-
-        if(media >= 7.0){
-            aluno.setEstadoAvaliacao(EstadoAvaliacao.APROVADO);
-        }else if(media >=4.0 && media <=6.9){
-            aluno.setEstadoAvaliacao(EstadoAvaliacao.EM_RECUPERACAO);
-        }else{
-            aluno.setEstadoAvaliacao(EstadoAvaliacao.REPROVADO);
-        }
-
-        return media;
+        return soma / notas.size();
      
     }
 
-    public boolean criarAvaliacao(Avaliacao avaliacao){
-        return professorContract.criarAvaliacao(avaliacao);
-    }
-
-    public double consultarFrequencia(Aluno aluno,Disciplina disciplina){
+    public double calcularFrequencia(Aluno aluno,Disciplina disciplina){
         if(!alunoContract.alunoValido(aluno.getId()) || !disciplinaContract.disciplinaValida(disciplina.getCodigo())){
             return 0.0;
         }
 
-        List<Frequencia> presencas = professorContract.obterFrequenciasDoAluno(aluno, disciplina);
+        double frequencia = calcularPorcentagem(aluno, disciplina);
+        double nota = calcularMedia(aluno);
+
+
+        aluno.setEstadoAvaliacao(definirEstadoDoALuno(nota, frequencia));
+        alunoContract.atualizarAluno(aluno);
+
+        return frequencia;
+
+    }
+
+    private double calcularPorcentagem(Aluno aluno, Disciplina disciplina){
+         List<Frequencia> presencas = professorContract.obterFrequenciasDoAluno(aluno, disciplina);
 
         int totalAulas = disciplina.getTotalAulas();
         if(totalAulas == 0) return 0.0;
@@ -116,7 +119,26 @@ public class ProfessorService {
             .count();
 
         return (diasPresentes / (double) totalAulas) * 100;
+    }
 
+    private EstadoAvaliacao definirEstadoDoALuno(double media, double frequencia){
+
+        if(media >= 7.0 && frequencia > 75.0){
+            return EstadoAvaliacao.APROVADO;
+        }else if(media >= 4.0 && media <= 6.9 && frequencia > 75.0){
+            return EstadoAvaliacao.EM_RECUPERACAO;
+        }else if(media >= 7.0 && frequencia < 75.0){
+            return EstadoAvaliacao.REPROVADO_POR_FALTA;
+        }else if(media < 4.0 && frequencia > 75.0){
+            return EstadoAvaliacao.REPROVADO_POR_NOTA;
+        }
+        else{
+            return EstadoAvaliacao.RECUPERADO;
+        }
+    }
+
+    public boolean criarAvaliacao(Avaliacao avaliacao){
+        return professorContract.criarAvaliacao(avaliacao);
     }
 }
 

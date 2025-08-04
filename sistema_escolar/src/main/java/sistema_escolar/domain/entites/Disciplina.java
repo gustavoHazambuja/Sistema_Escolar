@@ -28,14 +28,13 @@ public class Disciplina {
     @Id
     private int codigo;
 
-    @Enumerated(EnumType.STRING)
-    private TipoDisciplina tipoDisciplina;
+    private String nome;
 
     private int totalAulas;
 
-    public Disciplina(int codigo, TipoDisciplina tipoDisciplina, int totalAulas){
+    public Disciplina(int codigo, String nome, int totalAulas){
         this.codigo = codigo;
-        this.tipoDisciplina = tipoDisciplina;
+        this.nome = nome;
         this.totalAulas = totalAulas;
     }
     

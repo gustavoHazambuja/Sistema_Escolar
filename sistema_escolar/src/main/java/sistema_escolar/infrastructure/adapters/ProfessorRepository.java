@@ -6,15 +6,21 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
 
 import sistema_escolar.domain.contracts.ProfessorContract;
 import sistema_escolar.domain.entites.Aluno;
 import sistema_escolar.domain.entites.Avaliacao;
+import sistema_escolar.domain.entites.Disciplina;
+import sistema_escolar.domain.entites.Frequencia;
 import sistema_escolar.domain.entites.NotaAvaliacao;
 import sistema_escolar.domain.entites.Professor;
+import sistema_escolar.infrastructure.repositories.AvaliacaoJPARep;
+import sistema_escolar.infrastructure.repositories.FrequenciaJPARep;
 import sistema_escolar.infrastructure.repositories.NotaAvaliacaoJPARep;
 import sistema_escolar.infrastructure.repositories.ProfessorJPARep;
 
+@Repository
 public class ProfessorRepository implements ProfessorContract{
     
     @Autowired
@@ -22,6 +28,14 @@ public class ProfessorRepository implements ProfessorContract{
 
     @Autowired
     private NotaAvaliacaoJPARep notaAvaliacaoJPARep;
+
+    @Autowired
+    private AvaliacaoJPARep avaliacaoJPARep;
+
+    @Autowired
+    private FrequenciaJPARep frequenciaJPARep;
+
+
 
     @Override
     public boolean professorValido(int id){
@@ -35,6 +49,15 @@ public class ProfessorRepository implements ProfessorContract{
         }
 
         return professorJPARep.save(professor) != null;
+    }
+
+    @Override
+    public boolean criarAvaliacao(Avaliacao avaliacao){
+        if(avaliacao == null){
+            return false;
+        }
+
+        return avaliacaoJPARep.save(avaliacao) != null;
     }
 
     @Override
@@ -56,14 +79,15 @@ public class ProfessorRepository implements ProfessorContract{
     public Optional<Professor> buscarProfessorPorId(int id){
         return professorJPARep.findById(id);
     }
-
-    @Override
-    public double lancarNota(Aluno aluno, Avaliacao aliacao){
-        return 
-    }
+    
 
     @Override
     public List<NotaAvaliacao> obterNotasDoAluno(Aluno aluno){
         return notaAvaliacaoJPARep.findByAluno(aluno);
+    }
+
+    @Override
+    public List<Frequencia> obterFrequenciasDoAluno(Aluno aluno, Disciplina disciplina){
+        return frequenciaJPARep.findByAlunoAndDisciplina(aluno, disciplina);
     }
 }

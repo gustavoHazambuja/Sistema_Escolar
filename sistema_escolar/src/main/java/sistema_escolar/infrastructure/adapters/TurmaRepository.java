@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
 
 import sistema_escolar.domain.contracts.TurmaContract;
 import sistema_escolar.domain.entites.Aluno;
@@ -12,6 +13,7 @@ import sistema_escolar.domain.entites.Turma;
 import sistema_escolar.infrastructure.repositories.AlunoJPARep;
 import sistema_escolar.infrastructure.repositories.TurmaJPARep;
 
+@Repository
 public class TurmaRepository implements TurmaContract {
     
     @Autowired

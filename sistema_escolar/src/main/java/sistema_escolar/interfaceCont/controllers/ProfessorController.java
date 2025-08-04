@@ -35,7 +35,7 @@ public class ProfessorController {
         return professorUC.professorValido(id);
     }
 
-    @PostMapping(value = "/cadastro")
+    @PostMapping(value = "/cadastroProfessor")
     public ResponseEntity<?> cadastrarProfessor(@RequestBody ProfessorCadastroDTO dto){
         boolean resposta = professorUC.cadastrarProfessor(dto);
 
@@ -48,12 +48,12 @@ public class ProfessorController {
         }
     }
 
-    @DeleteMapping(value = "/deletar/{id}")
+    @DeleteMapping(value = "/deletarProfessor/{id}")
     public boolean deletarProfessorPorId(@PathVariable int id){
         return professorUC.deletarProfessorPorId(id);
     }
 
-    @GetMapping
+    @GetMapping(value = "/listarProfessores")
     public ResponseEntity<Page<ProfessorResumoDTO>> listarProfessores(Pageable pageable){
 
         Page<ProfessorResumoDTO> result = professorUC.listarProfessores(pageable);
@@ -61,7 +61,7 @@ public class ProfessorController {
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{nome}")
+    @GetMapping(value = "/buscarProfessorPorNome/{nome}")
     public ResponseEntity<Page<ProfessorDetalhadoDTO>> buscarProfessorPorNome(@PathVariable String nome, Pageable pageable){
 
         Page<ProfessorDetalhadoDTO> result = professorUC.buscarProfessorPorNome(nome, pageable);
@@ -69,7 +69,7 @@ public class ProfessorController {
         return new ResponseEntity<>(result,HttpStatus.FOUND);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/buscarProfessorPorId{id}")
     public ResponseEntity<ProfessorDetalhadoDTO> buscarProfessorPorId(@PathVariable int id){
 
         ProfessorDetalhadoDTO resutl = professorUC.buscarProfessorPorId(id);
@@ -77,9 +77,9 @@ public class ProfessorController {
         return new ResponseEntity<>(resutl,HttpStatus.FOUND);
     }
 
-    @PostMapping("/lancarNota")
-    public double lancarNota(@RequestBody AlunoCadastroDTO alunoDTO, @RequestBody AvaliacaoCadastroDTO avaliacaoDTO){
-        return professorUC.lancarNota(alunoDTO, avaliacaoDTO);
+    @PostMapping("/calcularNota")
+    public double calcularNota(@RequestBody AlunoCadastroDTO alunoDTO, @RequestBody AvaliacaoCadastroDTO avaliacaoDTO){
+        return professorUC.calcularNota(alunoDTO, avaliacaoDTO);
     }
 
     @PostMapping("/criarAvaliacao")
@@ -88,7 +88,7 @@ public class ProfessorController {
     }
 
     @GetMapping("/consultarFrequencia")
-    public double consultarFrequencia(@RequestBody AlunoCadastroDTO alunoDTO, @RequestBody DisciplinaCadastroDTO disciplinaDTO){
-        return professorUC.consultarFrequencia(alunoDTO, disciplinaDTO);
+    public double calcularFrequencia(@RequestBody AlunoCadastroDTO alunoDTO, @RequestBody DisciplinaCadastroDTO disciplinaDTO){
+        return professorUC.calcularFrequencia(alunoDTO, disciplinaDTO);
     }
 }

@@ -16,6 +16,7 @@ public interface AlunoContract {
     Page<Aluno> listarAlunos(Pageable pageable);
     Page<Aluno> buscarAlunoPorNome(String nome, Pageable pageable);
     Optional<Aluno> buscarAlunoPorId(int id);
+    void atualizarAluno(Aluno aluno);
     
 
 }

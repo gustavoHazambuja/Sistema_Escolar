@@ -33,7 +33,7 @@ public class TurmaController {
         return turmaUC.turmaValida(numero);
     }
 
-    @GetMapping(value = "/cadastro")
+    @GetMapping(value = "/cadastroTurma")
     public ResponseEntity<?> cadastrarTurma(@RequestBody TurmaCadastroDTO dto){
         boolean resposta = turmaUC.cadastrarTurma(dto);
 
@@ -46,13 +46,13 @@ public class TurmaController {
         }
     }
 
-    @DeleteMapping(value = "/deletar/{numero}")
+    @DeleteMapping(value = "/deletarTurma/{numero}")
     public boolean deletarTurmaPorNumero(@PathVariable int numero){
         return turmaUC.deletarTurmaPorNumero(numero);
     }
 
 
-    @GetMapping
+    @GetMapping(value = "/listarTurmas")
     public ResponseEntity<Page<TurmaResumidaDTO>> listarTurmas(Pageable pageable){
 
         Page<TurmaResumidaDTO> result = turmaUC.listarTurmas(pageable);
@@ -60,7 +60,7 @@ public class TurmaController {
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{numero}")
+    @GetMapping(value = "/buscarTurmaPorNumero/{numero}")
     public ResponseEntity<TurmaDetalhadaDTO> buscarTurmaPorNumero(@PathVariable int numero){
 
         TurmaDetalhadaDTO result = turmaUC.buscarTurmaPorNumero(numero);

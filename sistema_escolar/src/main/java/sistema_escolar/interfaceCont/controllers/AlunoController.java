@@ -33,7 +33,7 @@ public class AlunoController {
         return alunoUC.alunoValido(id);
     }
 
-    @PostMapping(value = "/cadastro")
+    @PostMapping(value = "/cadastroAluno")
     public ResponseEntity<?> cadastrarAluno(@RequestBody AlunoCadastroDTO dto){
         boolean resposta = alunoUC.cadastrarAluno(dto);
 
@@ -46,12 +46,12 @@ public class AlunoController {
         }
     }
 
-    @DeleteMapping(value = "/deletar/{id}")
+    @DeleteMapping(value = "/deletarAluno/{id}")
     public boolean deletarAlunoPorId(@PathVariable int id){
         return alunoUC.deletarAlunoPorId(id);
     }
 
-    @GetMapping
+    @GetMapping(value = "/listarAlunos")
    public ResponseEntity<Page<AlunoResumoDTO>> listarAlunos(Pageable pageable){
 
         Page<AlunoResumoDTO> result = alunoUC.listarAlunos(pageable);
@@ -59,7 +59,7 @@ public class AlunoController {
         return new ResponseEntity<>(result, HttpStatus.OK);  
    }
 
-   @GetMapping(value = "/{nome}")
+   @GetMapping(value = "/buscarAlunoPorNome/{nome}")
    public ResponseEntity<Page<AlunoDetalhadoDTO>> buscarAlunoPorNome(@PathVariable String nome, Pageable pageable){
 
         Page<AlunoDetalhadoDTO> result = alunoUC.buscarAlunoPorNome(nome, pageable);
@@ -67,7 +67,7 @@ public class AlunoController {
         return new ResponseEntity<>(result,HttpStatus.FOUND);
    }
 
-   @GetMapping(value = "{id}")
+   @GetMapping(value = "/buscarAlunoPorId/{id}")
    public ResponseEntity<AlunoDetalhadoDTO> buscarAlunoPorId(@PathVariable int id){
 
         AlunoDetalhadoDTO result = alunoUC.buscarAlunoPorId(id);

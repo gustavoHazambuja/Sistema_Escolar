@@ -3,6 +3,7 @@ package sistema_escolar.application.usercases;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Component;
 
 import sistema_escolar.application.dtos.DisciplinaCadastroDTO;
 import sistema_escolar.application.dtos.DisciplinaDetalhadaDTO;
@@ -10,6 +11,7 @@ import sistema_escolar.application.dtos.DisciplinaResumoDTO;
 import sistema_escolar.domain.entites.Disciplina;
 import sistema_escolar.domain.services.DisciplinaService;
 
+@Component
 public class DisciplinaUC {
     
     @Autowired
@@ -48,7 +50,7 @@ public class DisciplinaUC {
     private Disciplina toModel(DisciplinaCadastroDTO dto){
         return new Disciplina(
             dto.getCodigo(),
-            dto.getTipoDisciplina(),
+            dto.getNome(),
             dto.getTotalAulas()
         );
     }

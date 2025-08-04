@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sistema_escolar.domain.entites.TipoDisciplina;
 
 
 @Getter
@@ -14,6 +13,6 @@ import sistema_escolar.domain.entites.TipoDisciplina;
 public class DisciplinaCadastroDTO {
     
     private int codigo;
-    private TipoDisciplina tipoDisciplina;
+    private String nome;
     private int totalAulas;
 }

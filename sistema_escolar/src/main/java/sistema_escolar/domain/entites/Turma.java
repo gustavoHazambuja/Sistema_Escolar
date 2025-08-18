@@ -34,12 +34,6 @@ public class Turma {
         this.tamanho = tamanho;
     }
 
-    @ManyToMany(mappedBy = "turmas")
-    private List<Professor> professores = new ArrayList<>();
-
     @OneToMany(mappedBy = "turma")
     private List<Aluno> alunos = new ArrayList<>();
-
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Disciplina> disciplinas = new ArrayList<>();
 }

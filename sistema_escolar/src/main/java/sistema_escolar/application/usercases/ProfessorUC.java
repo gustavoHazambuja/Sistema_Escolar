@@ -7,12 +7,14 @@ import org.springframework.stereotype.Component;
 
 import sistema_escolar.application.dtos.AlunoCadastroDTO;
 import sistema_escolar.application.dtos.AvaliacaoCadastroDTO;
+import sistema_escolar.application.dtos.CalcularNotaDTO;
 import sistema_escolar.application.dtos.DisciplinaCadastroDTO;
 import sistema_escolar.application.dtos.ProfessorCadastroDTO;
 import sistema_escolar.application.dtos.ProfessorDetalhadoDTO;
 import sistema_escolar.application.dtos.ProfessorResumoDTO;
 import sistema_escolar.domain.entites.Aluno;
 import sistema_escolar.domain.entites.Avaliacao;
+import sistema_escolar.domain.entites.CalcularNota;
 import sistema_escolar.domain.entites.Disciplina;
 import sistema_escolar.domain.entites.Professor;
 import sistema_escolar.domain.services.ProfessorService;
@@ -51,11 +53,10 @@ public class ProfessorUC {
         return ProfessorDetalhadoDTO.fromModel(professor);
     }
 
-    public double calcularNota(AlunoCadastroDTO alunoCadastroDTO, AvaliacaoCadastroDTO avaliacaoCadastroDTO){
-        Aluno aluno = toModel(alunoCadastroDTO);
-        Avaliacao avaliacao = toModel(avaliacaoCadastroDTO);
+    public double calcularNota(CalcularNotaDTO dto){
 
-        return professorService.calcularNota(aluno, avaliacao);
+        CalcularNota model = toModel(dto);
+        return professorService.calcularNota(model);
     }
 
     public boolean criarAvaliacao(AvaliacaoCadastroDTO dto){
@@ -70,6 +71,12 @@ public class ProfessorUC {
         return professorService.calcularFrequencia(aluno, disciplina);
     }
 
+    private CalcularNota toModel(CalcularNotaDTO dto){
+        return new CalcularNota(
+            dto.getAlunoCadastroDTO().toModel(),
+            dto.getAvaliacaoCadastroDTO().toModel()
+        );
+    }
 
     private Professor toModel(ProfessorCadastroDTO dto){
         return new Professor(

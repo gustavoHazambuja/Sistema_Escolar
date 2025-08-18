@@ -20,7 +20,7 @@ public class ProfessorDetalhadoDTO {
     private String email;
     private String formacao;
 
-    private List<DisciplinaResumoDTO> disciplinas = new ArrayList<>();
+    private DisciplinaResumoDTO disciplinaResumoDTO;
     private List<TurmaResumidaDTO> turmas = new ArrayList<>();
 
 
@@ -31,9 +31,7 @@ public class ProfessorDetalhadoDTO {
             professor.getEmail(),
             professor.getFormacao(),
             
-            professor.getDisciplinas().stream()
-                .map(DisciplinaResumoDTO::fromModel)
-                .toList(),
+            DisciplinaResumoDTO.fromModel(professor.getDisciplina()),
 
             professor.getTurmas().stream()
                 .map(TurmaResumidaDTO::fromModel)

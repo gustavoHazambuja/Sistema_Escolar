@@ -23,4 +23,8 @@ public class AvaliacaoCadastroDTO{
             avaliacao.getDataAvaliacao()
         );
     }
+
+    public Avaliacao toModel(){
+        return new Avaliacao(id, dataAvaliacao);
+    }
 }

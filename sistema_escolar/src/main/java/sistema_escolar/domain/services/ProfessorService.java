@@ -13,6 +13,7 @@ import sistema_escolar.domain.contracts.DisciplinaContract;
 import sistema_escolar.domain.contracts.ProfessorContract;
 import sistema_escolar.domain.entites.Aluno;
 import sistema_escolar.domain.entites.Avaliacao;
+import sistema_escolar.domain.entites.CalcularNota;
 import sistema_escolar.domain.entites.Disciplina;
 import sistema_escolar.domain.entites.EstadoAvaliacao;
 import sistema_escolar.domain.entites.Frequencia;
@@ -65,16 +66,16 @@ public class ProfessorService {
     }
 
 
-    public double calcularNota(Aluno aluno, Avaliacao avaliacao){
-        if(!alunoContract.alunoValido(aluno.getId())){
+    public double calcularNota(CalcularNota nota){
+        if(!alunoContract.alunoValido(nota.getAluno().getId())){
             return 0.0;
         }
 
-        double media =  calcularMedia(aluno);
-        double frequencia = calcularPorcentagem(aluno, avaliacao.getDisciplina());
+        double media =  calcularMedia(nota.getAluno());
+        double frequencia = calcularPorcentagem(nota.getAluno(), nota.getAvaliacao().getDisciplina());
 
-        aluno.setEstadoAvaliacao(definirEstadoDoALuno(media, frequencia));
-        alunoContract.atualizarAluno(aluno);
+        nota.getAluno().setEstadoAvaliacao(definirEstadoDoALuno(media, frequencia));
+        alunoContract.atualizarAluno(nota.getAluno());
         
         return media;
     }

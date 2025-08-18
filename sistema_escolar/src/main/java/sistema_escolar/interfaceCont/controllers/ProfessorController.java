@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import sistema_escolar.application.dtos.AlunoCadastroDTO;
 import sistema_escolar.application.dtos.AvaliacaoCadastroDTO;
+import sistema_escolar.application.dtos.CalcularNotaDTO;
 import sistema_escolar.application.dtos.DisciplinaCadastroDTO;
 import sistema_escolar.application.dtos.ProfessorCadastroDTO;
 import sistema_escolar.application.dtos.ProfessorDetalhadoDTO;
@@ -78,8 +79,8 @@ public class ProfessorController {
     }
 
     @PostMapping("/calcularNota")
-    public double calcularNota(@RequestBody AlunoCadastroDTO alunoDTO, @RequestBody AvaliacaoCadastroDTO avaliacaoDTO){
-        return professorUC.calcularNota(alunoDTO, avaliacaoDTO);
+    public double calcularNota(@RequestBody CalcularNotaDTO notaDTO){
+        return professorUC.calcularNota(notaDTO);
     }
 
     @PostMapping("/criarAvaliacao")

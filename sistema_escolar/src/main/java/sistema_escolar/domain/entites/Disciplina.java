@@ -3,14 +3,13 @@ package sistema_escolar.domain.entites;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,6 +29,7 @@ public class Disciplina {
 
     private String nome;
 
+    @Column(name = "total_aulas")
     private int totalAulas;
 
     public Disciplina(int codigo, String nome, int totalAulas){
@@ -38,7 +38,7 @@ public class Disciplina {
         this.totalAulas = totalAulas;
     }
     
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "id_professor")
     private Professor professor;
 

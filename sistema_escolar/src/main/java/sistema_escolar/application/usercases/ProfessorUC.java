@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import sistema_escolar.application.dtos.AlunoCadastroDTO;
 import sistema_escolar.application.dtos.AvaliacaoCadastroDTO;
+import sistema_escolar.application.dtos.CalcularFrequenciaDTO;
 import sistema_escolar.application.dtos.CalcularNotaDTO;
 import sistema_escolar.application.dtos.DisciplinaCadastroDTO;
 import sistema_escolar.application.dtos.ProfessorCadastroDTO;
@@ -14,6 +15,7 @@ import sistema_escolar.application.dtos.ProfessorDetalhadoDTO;
 import sistema_escolar.application.dtos.ProfessorResumoDTO;
 import sistema_escolar.domain.entites.Aluno;
 import sistema_escolar.domain.entites.Avaliacao;
+import sistema_escolar.domain.entites.CalcularFrequencia;
 import sistema_escolar.domain.entites.CalcularNota;
 import sistema_escolar.domain.entites.Disciplina;
 import sistema_escolar.domain.entites.Professor;
@@ -64,17 +66,23 @@ public class ProfessorUC {
         return professorService.criarAvaliacao(avaliacao);
     }
 
-    public double calcularFrequencia(AlunoCadastroDTO alunoCadastroDTO, DisciplinaCadastroDTO disciplinaCadastroDTO){
-        Aluno aluno = toModel(alunoCadastroDTO);
-        Disciplina disciplina = toMdel(disciplinaCadastroDTO);
+    public double calcularFrequencia(CalcularFrequenciaDTO dto){
+        CalcularFrequencia model = toModel(dto);
 
-        return professorService.calcularFrequencia(aluno, disciplina);
+        return professorService.calcularFrequencia(model);
     }
 
     private CalcularNota toModel(CalcularNotaDTO dto){
         return new CalcularNota(
             dto.getAlunoCadastroDTO().toModel(),
             dto.getAvaliacaoCadastroDTO().toModel()
+        );
+    }
+
+    private CalcularFrequencia toModel(CalcularFrequenciaDTO dto){
+        return new CalcularFrequencia(
+            dto.getAlunoCadastroDTO().toModel(),
+            dto.getDisciplinaCadastroDTO().toModel()
         );
     }
 
@@ -87,13 +95,13 @@ public class ProfessorUC {
         );
     }
 
-    private Aluno toModel(AlunoCadastroDTO dto){
-        return new Aluno(
-            dto.getId(),
-            dto.getNome(),
-            dto.getEmail()
-        );
-    }
+    // private Aluno toModel(AlunoCadastroDTO dto){
+    //     return new Aluno(
+    //         dto.getId(),
+    //         dto.getNome(),
+    //         dto.getEmail()
+    //     );
+    // }
 
     private Avaliacao toModel(AvaliacaoCadastroDTO dto){
         return new Avaliacao(
@@ -102,11 +110,11 @@ public class ProfessorUC {
         );
     }
 
-    private Disciplina toMdel(DisciplinaCadastroDTO dto){
-        return new Disciplina(
-            dto.getCodigo(),
-            dto.getNome(),
-            dto.getTotalAulas()
-        );
-    }
+    // private Disciplina toMdel(DisciplinaCadastroDTO dto){
+    //     return new Disciplina(
+    //         dto.getCodigo(),
+    //         dto.getNome(),
+    //         dto.getTotalAulas()
+    //     );
+    // }
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import sistema_escolar.application.dtos.AlunoCadastroDTO;
 import sistema_escolar.application.dtos.AvaliacaoCadastroDTO;
+import sistema_escolar.application.dtos.CalcularFrequenciaDTO;
 import sistema_escolar.application.dtos.CalcularNotaDTO;
 import sistema_escolar.application.dtos.DisciplinaCadastroDTO;
 import sistema_escolar.application.dtos.ProfessorCadastroDTO;
@@ -89,7 +90,7 @@ public class ProfessorController {
     }
 
     @GetMapping("/consultarFrequencia")
-    public double calcularFrequencia(@RequestBody AlunoCadastroDTO alunoDTO, @RequestBody DisciplinaCadastroDTO disciplinaDTO){
-        return professorUC.calcularFrequencia(alunoDTO, disciplinaDTO);
+    public double calcularFrequencia(@RequestBody CalcularFrequenciaDTO frequenciaDTO){
+        return professorUC.calcularFrequencia(frequenciaDTO);
     }
 }

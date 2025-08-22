@@ -31,7 +31,7 @@ public class AlunoService {
     }
 
     public boolean deletarAlunoPorId(int id){
-        if(alunoContract.alunoValido(id)){
+        if(!alunoContract.alunoValido(id)){
             return false;
         }
 

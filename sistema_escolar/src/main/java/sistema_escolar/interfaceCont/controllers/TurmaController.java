@@ -10,30 +10,32 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import sistema_escolar.application.dtos.AlunoCadastroDTO;
+import sistema_escolar.application.dtos.RegistrarAlunoDTO;
 import sistema_escolar.application.dtos.TurmaCadastroDTO;
 import sistema_escolar.application.dtos.TurmaDetalhadaDTO;
 import sistema_escolar.application.dtos.TurmaResumidaDTO;
 import sistema_escolar.application.usercases.TurmaUC;
 
-@RequestMapping
-@RestController(value = "/turmas")
+@RestController
+@RequestMapping(value = "/turmas")
 public class TurmaController {
     
 
     @Autowired
     private TurmaUC turmaUC;
 
-    @GetMapping(value = "validaTurma/{numero}")
+    @GetMapping(value = "/validaTurma/{numero}")
     public boolean turmaValida(@PathVariable int numero){
         return turmaUC.turmaValida(numero);
     }
 
-    @GetMapping(value = "/cadastroTurma")
+    @PostMapping(value = "/cadastroTurma")
     public ResponseEntity<?> cadastrarTurma(@RequestBody TurmaCadastroDTO dto){
         boolean resposta = turmaUC.cadastrarTurma(dto);
 
@@ -68,8 +70,8 @@ public class TurmaController {
         return new ResponseEntity<>(result,HttpStatus.FOUND);
     }
 
-    @GetMapping(value = "/registrarAlunoNaTurma")
-    public boolean registarAlunoNaTurma(@RequestBody AlunoCadastroDTO alunoDTO, @RequestBody TurmaCadastroDTO turmaDTO){
-        return turmaUC.registarAlunoNaTurma(alunoDTO, turmaDTO);
+    @PostMapping(value = "/registrarAlunoNaTurma")
+    public boolean registarAlunoNaTurma(@RequestBody RegistrarAlunoDTO registrarAlunoDTO){
+        return turmaUC.registarAlunoNaTurma(registrarAlunoDTO);
     }
 }

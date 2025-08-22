@@ -33,7 +33,16 @@ public class DisciplinaRepository implements DisciplinaContract{
 
     @Override
     public boolean deletarDisciplinaPorCodigo(int codigo){
-        return disciplinaJPARep.deleteByCodigo(codigo);
+
+        Optional<Disciplina> disciplina = disciplinaJPARep.findByCodigo(codigo);
+
+        if(disciplina.isEmpty()){
+            return false;
+        }
+
+         disciplinaJPARep.delete(disciplina.get());
+         return true;
+
     }
 
     @Override

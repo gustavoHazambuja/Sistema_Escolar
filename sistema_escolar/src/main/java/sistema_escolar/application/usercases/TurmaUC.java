@@ -6,10 +6,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import sistema_escolar.application.dtos.AlunoCadastroDTO;
+import sistema_escolar.application.dtos.RegistrarAlunoDTO;
 import sistema_escolar.application.dtos.TurmaCadastroDTO;
 import sistema_escolar.application.dtos.TurmaDetalhadaDTO;
 import sistema_escolar.application.dtos.TurmaResumidaDTO;
 import sistema_escolar.domain.entites.Aluno;
+import sistema_escolar.domain.entites.RegistrarAluno;
 import sistema_escolar.domain.entites.Turma;
 import sistema_escolar.domain.services.TurmaService;
 
@@ -42,11 +44,17 @@ public class TurmaUC {
         return TurmaDetalhadaDTO.fromModel(turma);
     }
 
-    public boolean registarAlunoNaTurma(AlunoCadastroDTO alunoCadastroDTO, TurmaCadastroDTO turmaCadastroDTO){
-        Aluno aluno = toModel(alunoCadastroDTO);
-        Turma turma = toModel(turmaCadastroDTO);
+    public boolean registarAlunoNaTurma(RegistrarAlunoDTO dto){
+        RegistrarAluno model = toModel(dto);
 
-        return turmaService.registarAlunoNaTurma(aluno, turma);
+        return turmaService.registarAlunoNaTurma(model);
+    }
+
+    private RegistrarAluno toModel(RegistrarAlunoDTO dto){
+       return new RegistrarAluno(
+        dto.getIdAluno(),
+        dto.getNumeroTurma()
+       );
     }
 
 

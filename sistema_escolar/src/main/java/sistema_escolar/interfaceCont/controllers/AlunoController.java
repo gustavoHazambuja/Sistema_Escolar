@@ -20,8 +20,8 @@ import sistema_escolar.application.dtos.AlunoDetalhadoDTO;
 import sistema_escolar.application.dtos.AlunoResumoDTO;
 import sistema_escolar.application.usercases.AlunoUC;
 
-@RequestMapping
-@RestController(value = "/alunos")
+@RestController
+@RequestMapping(value = "/alunos")
 public class AlunoController {
     
     @Autowired

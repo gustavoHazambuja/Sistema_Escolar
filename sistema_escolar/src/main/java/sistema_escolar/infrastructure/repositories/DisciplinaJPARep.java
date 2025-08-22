@@ -11,7 +11,6 @@ import sistema_escolar.domain.entites.Disciplina;
 public interface DisciplinaJPARep extends JpaRepository<Disciplina, Integer>{
     
     boolean existsByCodigo(int codigo);
-    boolean deleteByCodigo(int codigo);
     Page<Disciplina> findByNomeContainingIgnoreCase(String nome, Pageable pageable);
     Optional<Disciplina> findByCodigo(int codigo);
 }

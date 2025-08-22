@@ -9,6 +9,5 @@ import sistema_escolar.domain.entites.Turma;
 public interface TurmaJPARep extends JpaRepository<Turma, Integer> {
     
     boolean existsByNumero(int numero);
-    boolean deleteByNumero(int numero);
     Optional<Turma> findByNumero(int numero);
 }

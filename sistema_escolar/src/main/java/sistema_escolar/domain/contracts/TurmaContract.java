@@ -4,8 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import sistema_escolar.domain.entites.Aluno;
+import sistema_escolar.domain.entites.RegistrarAluno;
 import sistema_escolar.domain.entites.Turma;
 
 public interface TurmaContract {
@@ -15,5 +14,5 @@ public interface TurmaContract {
     boolean deletarTurmaPorNumero(int numero);
     Page<Turma> listarTurmas(Pageable pageable);
     Optional<Turma> buscarTurmaPorNumero(int numero);
-    boolean registrarAlunoNaTurma(Aluno aluno, Turma turma);
+    boolean registrarAlunoNaTurma(RegistrarAluno registarAluno);
 }

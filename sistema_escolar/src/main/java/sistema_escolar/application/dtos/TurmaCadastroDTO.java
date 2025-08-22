@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import sistema_escolar.domain.entites.Turma;
 
 @Getter
 @Setter
@@ -14,4 +15,9 @@ public class TurmaCadastroDTO {
     private int numero;
     private int capacidade;
     private int tamanho;
+
+
+    public Turma toModel(){
+        return new Turma(numero, capacidade, tamanho);
+    }
 }

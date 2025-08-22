@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import sistema_escolar.domain.contracts.AlunoContract;
 import sistema_escolar.domain.contracts.TurmaContract;
-import sistema_escolar.domain.entites.Aluno;
+import sistema_escolar.domain.entites.RegistrarAluno;
 import sistema_escolar.domain.entites.Turma;
 
 @Service
@@ -34,7 +34,7 @@ public class TurmaService {
     }
 
     public boolean deletarTurmaPorNumero(int numero){
-        if(turmaContract.turmaValida(numero)){
+        if(!turmaContract.turmaValida(numero)){
             return false;
         }
 
@@ -49,17 +49,25 @@ public class TurmaService {
         return turmaContract.buscarTurmaPorNumero(numero);
     }
 
-    public boolean registarAlunoNaTurma(Aluno aluno, Turma turma){
-        if(turma.getTamanho() == turma.getCapacidade()){ // Turma lotada
+    public boolean registarAlunoNaTurma(RegistrarAluno registrarAluno){
+       if(!turmaContract.turmaValida(registrarAluno.getNumeroTurma()) || !alunoContract.alunoValido(registrarAluno.getIdAluno())){
+        return false;
+       }
+
+        Optional<Turma> turmaOpt = turmaContract.buscarTurmaPorNumero(registrarAluno.getNumeroTurma());
+        
+        if(turmaOpt.isEmpty()){
             return false;
         }
 
-        if(!turmaContract.turmaValida(turma.getNumero()) || !alunoContract.alunoValido(aluno.getId())){
+        Turma turma = turmaOpt.get();
+
+        if(turma.getTamanho() >= turma.getCapacidade()){ // Turma cheia
             return false;
         }
 
         turma.setTamanho(turma.getTamanho() + 1);
-        return turmaContract.registrarAlunoNaTurma(aluno, turma);
+        return turmaContract.registrarAlunoNaTurma(registrarAluno);
 
         
     }

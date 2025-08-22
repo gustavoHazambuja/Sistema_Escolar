@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import sistema_escolar.domain.contracts.TurmaContract;
 import sistema_escolar.domain.entites.Aluno;
+import sistema_escolar.domain.entites.RegistrarAluno;
 import sistema_escolar.domain.entites.Turma;
 import sistema_escolar.infrastructure.repositories.AlunoJPARep;
 import sistema_escolar.infrastructure.repositories.TurmaJPARep;
@@ -38,7 +39,15 @@ public class TurmaRepository implements TurmaContract {
 
     @Override
     public boolean deletarTurmaPorNumero(int numero){
-        return turmaJPARep.deleteByNumero(numero);
+
+        Optional<Turma> turma = turmaJPARep.findById(numero);
+
+        if(turma.isEmpty()){
+            return false;
+        }
+
+        turmaJPARep.delete(turma.get());
+        return true;
     }
 
     @Override
@@ -52,14 +61,21 @@ public class TurmaRepository implements TurmaContract {
     }
 
     @Override
-    public boolean registrarAlunoNaTurma(Aluno aluno, Turma turma){
-        if(aluno == null || turma == null){
+    public boolean registrarAlunoNaTurma(RegistrarAluno registrarAluno){
+        
+        Optional<Aluno> alunoOpt = alunoJPARep.findById(registrarAluno.getIdAluno());
+        Optional<Turma> turmaOpt = turmaJPARep.findByNumero(registrarAluno.getNumeroTurma());
+
+        if(alunoOpt.isEmpty() || turmaOpt.isEmpty()){
             return false;
         }
 
-        aluno.setTurma(turma);
-        alunoJPARep.save(aluno);
+       Aluno aluno = alunoOpt.get();
+       Turma turma = turmaOpt.get();
+       
+       aluno.setTurma(turma);
+       alunoJPARep.save(aluno);
 
-        return true;
+       return true;
     }
 }

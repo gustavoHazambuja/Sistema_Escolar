@@ -29,7 +29,7 @@ public class DisciplinaService {
     }
 
     public boolean deletarDisciplinaPorCodigo(int codigo){
-        if(disciplinaContract.disciplinaValida(codigo)){
+        if(!disciplinaContract.disciplinaValida(codigo)){
             return false;
         }
 

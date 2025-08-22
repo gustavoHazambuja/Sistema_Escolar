@@ -5,19 +5,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import sistema_escolar.application.dtos.AlunoCadastroDTO;
 import sistema_escolar.application.dtos.AvaliacaoCadastroDTO;
 import sistema_escolar.application.dtos.CalcularFrequenciaDTO;
 import sistema_escolar.application.dtos.CalcularNotaDTO;
-import sistema_escolar.application.dtos.DisciplinaCadastroDTO;
 import sistema_escolar.application.dtos.ProfessorCadastroDTO;
 import sistema_escolar.application.dtos.ProfessorDetalhadoDTO;
 import sistema_escolar.application.dtos.ProfessorResumoDTO;
-import sistema_escolar.domain.entites.Aluno;
 import sistema_escolar.domain.entites.Avaliacao;
 import sistema_escolar.domain.entites.CalcularFrequencia;
 import sistema_escolar.domain.entites.CalcularNota;
-import sistema_escolar.domain.entites.Disciplina;
 import sistema_escolar.domain.entites.Professor;
 import sistema_escolar.domain.services.ProfessorService;
 

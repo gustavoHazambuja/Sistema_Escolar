@@ -33,7 +33,15 @@ public class AlunoRepository implements AlunoContract {
 
     @Override
     public boolean deletarAlunoPorId(int id){
-        return alunoJPARep.deleteById(id);
+
+        Optional<Aluno> aluno = alunoJPARep.findById(id);
+
+        if(aluno.isEmpty()){
+            return false;
+        }
+
+        alunoJPARep.delete(aluno.get());
+        return true;
     }
 
     @Override

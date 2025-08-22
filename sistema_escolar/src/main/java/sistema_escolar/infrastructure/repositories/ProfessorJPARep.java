@@ -11,7 +11,6 @@ import sistema_escolar.domain.entites.Professor;
 public interface ProfessorJPARep extends JpaRepository<Professor,Integer>{
     
     boolean existsById(int id);
-    boolean deleteById(int id);
     Page<Professor> findByNomeContainingIgnoreCase(String nome, Pageable pageable);
     Optional<Professor> findById(int id);
 

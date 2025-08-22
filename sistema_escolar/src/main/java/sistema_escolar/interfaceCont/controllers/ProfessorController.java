@@ -25,8 +25,8 @@ import sistema_escolar.application.dtos.ProfessorDetalhadoDTO;
 import sistema_escolar.application.dtos.ProfessorResumoDTO;
 import sistema_escolar.application.usercases.ProfessorUC;
 
-@RequestMapping
-@RestController(value = "/professores")
+@RestController
+@RequestMapping(value = "/professores")
 public class ProfessorController {
     
     @Autowired

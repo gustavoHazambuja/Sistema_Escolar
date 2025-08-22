@@ -62,7 +62,15 @@ public class ProfessorRepository implements ProfessorContract{
 
     @Override
     public boolean deletarProfessorPorId(int id){
-        return professorJPARep.deleteById(id);
+
+        Optional<Professor> professor = professorJPARep.findById(id);
+
+        if(professor.isEmpty()){
+            return false;
+        }
+
+        professorJPARep.delete(professor.get());
+        return true;
     }
 
     @Override

@@ -11,7 +11,6 @@ import sistema_escolar.domain.entites.Aluno;
 public interface AlunoJPARep extends JpaRepository<Aluno, Integer> {
     
     boolean existsById(int id);
-    boolean deleteById(int id);
     Page<Aluno> findByNomeContainingIgnoreCase(String nome, Pageable pageable);
     Optional<Aluno> findById(int id);
 }

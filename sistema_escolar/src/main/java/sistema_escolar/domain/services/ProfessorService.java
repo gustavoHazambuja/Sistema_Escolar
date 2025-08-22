@@ -47,7 +47,7 @@ public class ProfessorService {
     }
 
     public boolean deletarProfessorPorId(int id){
-        if(professorContract.professorValido(id)){
+        if(!professorContract.professorValido(id)){
             return false;
         }
 
